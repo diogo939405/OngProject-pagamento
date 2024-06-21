@@ -11,8 +11,9 @@ server.use(express.json())
 server.use(cors())
 server.use("Mercado_Pago", mercadopago)
 
-mercadopago.configure({
-    access_token: process.env.ACESS_TOKEN || "",
+const cliente = mercadopago.configure({
+    access_token: process.env.ACCESS_TOKEN || "",
+    access_client: process.env.ACCESS_CLIENT || "",
 });
 
 server.get('/', (req, res) => {
@@ -20,7 +21,7 @@ server.get('/', (req, res) => {
 });
 
 server.post("/dados", async (req, res) => {
-    console.log('req ', req)
+    console.log('req ', req.body)
 
     const dado = req.body;
     // const novosDados = dado.map(e => {
@@ -50,8 +51,8 @@ server.post("/dados", async (req, res) => {
 
             auto_return: "approved",
         };
-        const preference = new Preference(client)
-        const resposta = await mercadopago.preferences.create(dados);
+        const preference = mercadopago.createPreference(cliente)
+        const resposta = await preference.create({dados});
         console.log(resposta)
         res.status(200).json(resposta.response.init_point, {
             id: resposta.id
