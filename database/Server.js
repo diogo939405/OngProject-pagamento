@@ -11,7 +11,8 @@ server.use(express.json())
 server.use(cors())
 server.use("Mercado_Pago", mercadopago)
 
-const cliente = mercadopago.configure({
+//const cliente = 
+mercadopago.configure({
     access_token: process.env.ACCESS_TOKEN || "",
     access_client: process.env.ACCESS_CLIENT || "",
 });
@@ -51,12 +52,21 @@ server.post("/dados", async (req, res) => {
 
             auto_return: "approved",
         };
-        const preference = mercadopago.createPreference(cliente)
-        const resposta = await preference.create({dados});
+        // const preference = new Preference(cliente)
+
+        mercadopago.configure({
+            access_token: "TEST-2308607446552606-041016-0e4b509f3b3bf31603f160002a4902f1-661201544",
+            access_client: "TEST-00a38ea9-801e-48c5-9c93-a252d6ac8884",
+        });
+
+        const resposta = await mercadopago.preferences.create(dados);
         console.log(resposta)
-        res.status(200).json(resposta.response.init_point, {
-            id: resposta.id
+        res.json({
+            id: resposta.id,
+            url: resposta.response.init_point
         })
+        res.status(200)
+        return res;
     } catch (error) {
         (console.log(error))
         res.status(500).json(error.message)
