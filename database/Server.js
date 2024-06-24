@@ -38,10 +38,10 @@ server.post("/dados", async (req, res) => {
         const dados = {
             items: [
                 {
-                    title: "diogo",
-                    unit_price: 200,
+                    title: req.body.title,
+                    unit_price: Number(req.body.unit_price),
                     currency_id: "BRL",
-                    description: "aqui",
+                    description: req.body.description,
                     quantity: 1
                 },
             ],
