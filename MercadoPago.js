@@ -8,7 +8,7 @@ mercadopago.configure({
     access_token: process.env.ACESS_TOKEN || "",
 });
 
-Mercado_Pago.get('/' ,(req,res) =>{
+Mercado_Pago.get('/', (req, res) => {
     res.send('get')
 });
 
@@ -25,8 +25,8 @@ Mercado_Pago.post("/", async (req, res) => {
                 },
             ],
             back_urls: {
-                success: "globoesporte.globo.com",
-                failure: "https://www.npmjs.com/package/dotenv",
+                success: "https://ongdoacao.vercel.app/PagamentoTela",
+                failure: "https://ongdoacao.vercel.app/Ongs",
             },
 
             auto_return: "approved",
