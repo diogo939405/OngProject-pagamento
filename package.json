@@ -4,7 +4,7 @@
   "description": "",
   "main": "./database/Server.js",
   "scripts": {
-    "start": "nodemon Server.js",
+    "start": "nodemon database/Server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
