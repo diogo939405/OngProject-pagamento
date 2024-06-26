@@ -12,10 +12,10 @@ server.use(cors())
 server.use("Mercado_Pago", mercadopago)
 
 //const cliente = 
-mercadopago.configure({
-    access_token: process.env.ACCESS_TOKEN || "",
-    access_client: process.env.ACCESS_CLIENT || "",
-});
+// mercadopago.configure({
+//     access_token: process.env.ACCESS_TOKEN || "",
+//     access_client: process.env.ACCESS_CLIENT || "",
+// });
 
 server.get('/', (req, res) => {
     res.send('get')
@@ -23,17 +23,6 @@ server.get('/', (req, res) => {
 
 server.post("/dados", async (req, res) => {
     console.log('req ', req.body)
-
-    const dado = req.body;
-    // const novosDados = dado.map(e => {
-    //     return {
-    //         title: e.nome,
-    //         unit_price: e.inputValue,
-    //         currency_id: "BRL",
-    //         description: e.descricaoCurta,
-    //         quantity: 1
-    //     };
-    // });
     try {
         const dados = {
             items: [
@@ -55,12 +44,13 @@ server.post("/dados", async (req, res) => {
         // const preference = new Preference(cliente)
 
         mercadopago.configure({
-            access_token: "TEST-2308607446552606-041016-0e4b509f3b3bf31603f160002a4902f1-661201544",
-            access_client: "TEST-00a38ea9-801e-48c5-9c93-a252d6ac8884",
+            access_token: process.env.ACCESS_TOKEN,
+            //  "TEST-2308607446552606-041016-0e4b509f3b3bf31603f160002a4902f1-661201544",
+            access_client: process.env.ACCESS_CLIENT,
+            // "TEST-00a38ea9-801e-48c5-9c93-a252d6ac8884",
         });
 
         const resposta = await mercadopago.preferences.create(dados);
-        console.log(resposta)
         res.json({
             id: resposta.id,
             url: resposta.response.init_point
