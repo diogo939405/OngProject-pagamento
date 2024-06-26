@@ -35,8 +35,8 @@ server.post("/dados", async (req, res) => {
                 },
             ],
             back_urls: {
-                success: "globoesporte.globo.com",
-                failure: "https://www.npmjs.com/package/dotenv",
+                success: "https://ongdoacao.vercel.app/PagamentoTela",
+                failure: "https://ongdoacao.vercel.app/Ongs",
             },
 
             auto_return: "approved",
