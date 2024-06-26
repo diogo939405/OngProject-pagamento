@@ -2,9 +2,9 @@
   "name": "mercadopago",
   "version": "1.0.0",
   "description": "",
-  "main": "./database/Server.js",
+  "main": "Server.js",
   "scripts": {
-    "start": "nodemon database/Server.js",
+    "start": "node Server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
